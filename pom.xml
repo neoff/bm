@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.neov.unicorn</groupId>
+	<artifactId>burn</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<modules>
+		<module>server</module>
+		<module>demo</module>
+		<module>common</module>
+		<module>client</module>
+	</modules>
+	<packaging>pom</packaging>
+	<properties>
+		<!-- Generic properties -->
+		<source.version>12</source.version>
+		<target.version>12</target.version>
+
+		<!-- Spring boot BOM -->
+		<spring-boot-dependencies.version>2.1.4.RELEASE</spring-boot-dependencies.version>
+		<spring-cloud-commons-dependencies.version>2.1.0.RELEASE</spring-cloud-commons-dependencies.version>
+		<spring-cloud-netflix-dependencies.version>2.1.0.RELEASE</spring-cloud-netflix-dependencies.version>
+		<spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
+
+		<!-- MAVEN PLUGINS-->
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<version>13.0.8</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-commons-dependencies</artifactId>
+				<version>${spring-cloud-commons-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jdk8</artifactId>
+				<version>${jackson-datatype-jdk8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback-encoder.version}</version>
+			</dependency>-->
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${source.version}</source>
+					<target>${target.version}</target>
+					<testSource>${source.version}</testSource>
+					<testTarget>${target.version}</testTarget>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<fork>true</fork>
+					<compilerArgs>
+						<arg>--enable-preview</arg>
+							<!--<arg>- -add-modules</arg>
+							<arg>java.xml.bind</arg>-->
+						</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring-boot-dependencies.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
